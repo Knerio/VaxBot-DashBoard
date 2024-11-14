@@ -1,10 +1,10 @@
 "use client"
 
-import {useEffect, useState} from "react";
+import {Suspense, useEffect, useState} from "react";
 import {useSearchParams} from "next/navigation";
 import axios from "axios";
 
-export default function App() {
+function Validation() {
     const params = useSearchParams();
     const [error, setError] = useState("")
 
@@ -35,4 +35,10 @@ export default function App() {
     return <h1>
         {error}
     </h1>
+}
+
+export default function App() {
+    return <Suspense>
+        <Validation/>
+    </Suspense>
 }
