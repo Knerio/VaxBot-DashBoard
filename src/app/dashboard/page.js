@@ -1,32 +1,18 @@
 "use client"
 
-import {Suspense, useEffect, useState} from "react";
-import axios from "axios";
+import {useGuilds} from "@/app/hooks/useGuild";
 
-function Logic() {
-    const [guilds, setGuilds] = useState([]);
+export default function Logic() {
+    const {guilds, loading, error} = useGuilds();
 
-    useEffect(() => {
-        const token = window.localStorage.getItem("token")
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error fetching guilds: {error.message}</p>;
 
-        axios( {
-            url: "https://api.knerio.tech/vaxbot/guilds",
-            method: "GET",
-            headers: {
-                Authorization: "Bearer " + token
-            }
-
-        }).then(r => {
-            console.log(r);
-        })
-    }, []);
-
-    return <h1>
-    </h1>
-}
-
-export default function App() {
-    return <Suspense>
-        <Logic/>
-    </Suspense>
+    return (
+        <>
+            {guilds.map(value => (
+                <a href={"/dashboard/" + value.id} key={value.id}>{value.name}</a>
+            ))}
+        </>
+    );
 }
