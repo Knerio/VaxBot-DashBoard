@@ -1,13 +1,32 @@
 "use client"
 
-import {useEffect} from "react";
+import {Suspense, useEffect, useState} from "react";
+import axios from "axios";
 
-export default function App() {
+function Logic() {
+    const [guilds, setGuilds] = useState([]);
+
     useEffect(() => {
-        if (window.localStorage.getItem("token") === undefined) window.location.replace("/oauth/discord")
+        const token = window.localStorage.getItem("token")
+
+        axios( {
+            url: "https://api.knerio.tech/vaxbot/guilds",
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + token
+            }
+
+        }).then(r => {
+            console.log(r);
+        })
     }, []);
 
-    return <>
+    return <h1>
+    </h1>
+}
 
-    </>
+export default function App() {
+    return <Suspense>
+        <Logic/>
+    </Suspense>
 }
