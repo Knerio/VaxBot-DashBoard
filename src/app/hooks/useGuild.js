@@ -23,6 +23,7 @@ export function useGuilds() {
                 setLoading(false);
             })
             .catch(err => {
+                window.location.replace("/oauth/discord")
                 setError(err);
                 setLoading(false);
             });

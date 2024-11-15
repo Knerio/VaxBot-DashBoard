@@ -74,6 +74,7 @@ export function useGuildConfig(guildId) {
                 setLoading(false);
             })
             .catch(err => {
+                window.location.replace("/oauth/discord")
                 setError(err);
                 setLoading(false);
             });

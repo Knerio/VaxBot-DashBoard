@@ -24,6 +24,7 @@ export function useGuildChannels(guildId) {
                 setLoading(false);
             })
             .catch(err => {
+                window.location.replace("/oauth/discord")
                 setError(err);
                 setLoading(false);
             });
