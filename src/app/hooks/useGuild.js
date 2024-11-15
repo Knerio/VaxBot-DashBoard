@@ -11,7 +11,7 @@ export function useGuilds() {
         const token = window.localStorage.getItem("token");
 
         axios({
-            url: "http://localhost:8080/vaxbot/guilds",
+            url: "https://api.knerio.tech/vaxbot/guilds",
             method: "GET",
             headers: {
                 Authorization: "Bearer " + token,
