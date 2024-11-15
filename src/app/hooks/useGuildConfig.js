@@ -3,7 +3,7 @@ import axios from "axios";
 
 async function fetchChannelName(guildId, channelId, token) {
     const response = await axios({
-        url: `http://localhost:8080/vaxbot/guilds/${guildId}/channel/${channelId}`,
+        url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/channel/${channelId}`,
         method: "GET",
         headers: {
             Authorization: "Bearer " + token,
