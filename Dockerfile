@@ -14,10 +14,10 @@ RUN npm install --force
 COPY . .
 
 # Build the Next.js application
-RUN npm run build
+RUN npm run build --force
 
 # Install only production dependencies
-RUN npm prune --production
+RUN npm prune --production --force
 
 # Use a lightweight image for the runtime environment
 FROM node:18-alpine AS runner
