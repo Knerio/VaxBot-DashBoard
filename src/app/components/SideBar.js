@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -11,57 +13,32 @@ import LayersIcon from '@mui/icons-material/Layers';
 import {AppProvider} from '@toolpad/core/AppProvider';
 import {DashboardLayout} from '@toolpad/core/DashboardLayout';
 import {useDemoRouter} from '@toolpad/core/internal';
-import {WifiIcon} from "@heroicons/react/16/solid";
+import {HomeIcon, WifiIcon} from "@heroicons/react/16/solid";
 import logoBanner from "../assets/logo-banner.jpg"
 import Image from "next/image";
 import BotStatus from "@/app/components/BotStatus";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
+import Home from "@/app/page";
+import Dashboard from "@/app/dashboard/page";
+import RedirectPage from "@/app/oauth/discord/page";
 
 
 const NAVIGATION = [
     {
         kind: 'header',
-        title: 'Main items',
-        icon: <WifiIcon/>
+        title: 'Items',
+    },
+    {
+        segment: '',
+        title: 'Home',
+        icon: <HomeIcon/>,
     },
     {
         segment: 'dashboard',
         title: 'Dashboard',
         icon: <DashboardIcon/>,
-    },
-    {
-        segment: 'orders',
-        title: 'Orders',
-        icon: <ShoppingCartIcon/>,
-    },
-    {
-        kind: 'divider',
-    },
-    {
-        kind: 'header',
-        title: 'Analytics',
-    },
-    {
-        segment: 'reports',
-        title: 'Reports',
-        icon: <BarChartIcon/>,
-        children: [
-            {
-                segment: 'sales',
-                title: 'Sales',
-                icon: <DescriptionIcon/>,
-            },
-            {
-                segment: 'traffic',
-                title: 'Traffic',
-                icon: <DescriptionIcon/>,
-            },
-        ],
-    },
-    {
-        segment: 'integrations',
-        title: 'Integrations',
-        icon: <LayersIcon/>,
-    },
+    }
 ];
 
 function SideBar({children}) {
@@ -77,14 +54,10 @@ function SideBar({children}) {
                         height={100}
                     />,
                     title: "",
-                    customHeader: (
-                        <div className="header-extra">
-                            <h1 className="text-xl font-bold">Welcome to the Dashboard!</h1>
-                        </div>
-                    ),
                 }}
             >
                 <DashboardLayout>
+                    <BotStatus />
                     {children}
                 </DashboardLayout>
             </AppProvider>

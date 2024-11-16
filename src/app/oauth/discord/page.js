@@ -2,7 +2,7 @@
 
 import {useEffect} from "react";
 
-export default function App() {
+export default function RedirectPage() {
 
 
     useEffect(() => {

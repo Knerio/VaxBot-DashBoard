@@ -13,7 +13,7 @@ export default function BotStatus() {
         : "Der Bot reagiert auf die Ping-Anfrage.";
 
     return (
-        <Box padding={3} className={"grid justify-items-end "}>
+        <Box padding={3} className={" fixed grid justify-items-end right-0 top-13"}>
             <Paper elevation={3} className={""}>
                 <Tooltip title={statusMessage}>
                     <IconWifi size={50}  color={statusColor}></IconWifi>

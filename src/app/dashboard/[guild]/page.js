@@ -2,6 +2,8 @@
 import React, {useState} from 'react';
 import {useGuildConfig} from "@/app/hooks/useGuildConfig";
 import {useParams} from "next/navigation";
+import BotStatus from "@/app/components/BotStatus";
+import {Skeleton} from "@mui/material";
 
 const JsonViewer = ({data}) => {
     const [isOpen, setIsOpen] = useState(true);
@@ -52,17 +54,19 @@ const GuildConfig = () => {
     const {guild} = useParams();
     const {config, error, loading} = useGuildConfig(guild);
 
-    if (loading) return <p className="text-gray-500">Loading...</p>;
     if (error) return <p className="text-red-500">Error fetching guilds: {error.message}</p>;
 
 
     return (
-        <div className="p-6 space-y-4">
-            <h1 className="text-2xl font-semibold">Guild Configuration</h1>
-            <div className="bg-gray-800 text-white w-[40%] h-[80vh] p-4 rounded-lg overflow-x-auto whitespace-pre-wrap">
-                <JsonViewer data={config}/>
+        <>
+            <div className="p-6 space-y-4 w-[25%]">
+                <h1 className="text-2xl font-semibold">Guild Configuration</h1>
+                <div
+                    className="bg-gray-800 text-white w-[40%] h-[80vh] p-4 rounded-lg overflow-x-auto whitespace-pre-wrap">
+                    <JsonViewer data={config}/>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
