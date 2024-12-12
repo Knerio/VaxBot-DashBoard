@@ -3,18 +3,24 @@ import axios from "axios";
 
 
 async function fetchAttachment(attachmentId) {
-    console.log(attachmentId)
     const token = window.localStorage.getItem("token");
-    const response = await axios({
+    return await axios({
         url: `https://api.knerio.tech/vaxbot/ticket/attachment/${attachmentId}`,
         method: "GET",
         headers: {
             Authorization: "Bearer " + token,
             Accept: "application/json"
         }
+    }).then(response => {
+        const body = response.data;
+        const data = body.data;
+        const fileData = data.data;
+        const base64String = fileData.data;
+        return {src: base64String, height: data.height, width: data.width};
+    }).catch(error => {
+        const newVar = {src: "https://cdn.knerio.tech/u/MhbZzp.png", width: 100, height: 100};
+        return newVar;
     });
-    const res = response.data.data;
-    return {src: res.data, width: res.width, height: res.height};
 }
 
 function fetchUserdata(guildId, userId) {

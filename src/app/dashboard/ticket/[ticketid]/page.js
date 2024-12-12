@@ -12,8 +12,6 @@ const Ticket = () => {
 
     if (loading) return <h1 className="text-center text-white">Loading...</h1>;
 
-    console.log(ticket)
-    console.log(ticket.guildId)
 
     return (
         <div className="bg-[#2f3136] text-white p-6 max-w-3xl mx-auto rounded-lg shadow-lg">
