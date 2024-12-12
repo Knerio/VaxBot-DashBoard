@@ -34,7 +34,6 @@ const Ticket = () => {
     );
 };
 
-export default Ticket;
 const Message = ({messageId, guildId, senderId, content, files, fetchAttachment, fetchUserdata}) => {
     // State to hold the fetched username
     const [username, setUsername] = useState(null);
@@ -94,7 +93,7 @@ const Message = ({messageId, guildId, senderId, content, files, fetchAttachment,
     return (
         <div className="bg-[#36393f] text-white p-4 rounded-md mb-4 shadow-md">
             <div className="flex items-start space-x-4"> {/* Changed items-center to items-start */}
-                <Base64Image src={avatar}/>
+                <Base64Image className={"rounded-full top-0"} src={avatar}/>
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
                         <div className="font-bold text-lg">{username || senderId}</div>
@@ -107,7 +106,7 @@ const Message = ({messageId, guildId, senderId, content, files, fetchAttachment,
                 <div className="mt-3">
                     {files.map((file, index) => (
                         <div key={index}>
-                            {file.reference && <Base64Image promise={fetchAttachment(file.reference)}/>}
+                            {file.reference && <Base64Image className={""} promise={fetchAttachment(file.reference)}/>}
                         </div>
                     ))}
                 </div>
@@ -115,3 +114,5 @@ const Message = ({messageId, guildId, senderId, content, files, fetchAttachment,
         </div>
     );
 };
+
+export default Ticket;
