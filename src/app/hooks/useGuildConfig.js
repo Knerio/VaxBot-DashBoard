@@ -3,7 +3,7 @@ import axios from "axios";
 
 async function fetchChannelName(guildId, channelId, token) {
     const response = await axios({
-        url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/channel/${channelId}`,
+        url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/channel/${channelId}?toString=true`,
         method: "GET",
         headers: {
             Authorization: "Bearer " + token,
@@ -15,7 +15,7 @@ async function fetchChannelName(guildId, channelId, token) {
 
 async function fetchRoleName(guildId, roleId, token) {
     const response = await axios({
-        url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/role/${roleId}`,
+        url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/role/${roleId}?toString=true`,
         method: "GET",
         headers: {
             Authorization: "Bearer " + token,
@@ -34,7 +34,7 @@ export function useGuildConfig(guildId) {
         const token = window.localStorage.getItem("token");
 
         axios({
-            url: `https://api.knerio.tech/vaxbot/guilds/${guildId}`,
+            url: `https://api.knerio.tech/vaxbot/guilds/${guildId}?toString=true`,
             method: "GET",
             headers: {
                 Authorization: "Bearer " + token,

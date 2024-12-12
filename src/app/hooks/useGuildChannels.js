@@ -10,7 +10,7 @@ export function useGuildChannels(guildId) {
         const token = window.localStorage.getItem("token");
 
         axios({
-            url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/channels`,
+            url: `https://api.knerio.tech/vaxbot/guilds/${guildId}/channels?toString=true`,
             method: "GET",
             headers: {
                 Authorization: "Bearer " + token,
